@@ -1,281 +1,75 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>Политика конфиденциальности | Наше приложение</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Политика конфиденциальности</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
     body {
-      background: linear-gradient(145deg, #e9eff7 0%, #d9e2ef 100%);
-      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-      line-height: 1.5;
-      color: #1a2c3e;
-      padding: 2rem 1rem;
+      font-family: Arial, sans-serif;
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+      line-height: 1.6;
+      color: #222;
+      background: #fff;
     }
-
-    /* контейнер с карточкой */
-    .privacy-container {
-      max-width: 1100px;
-      margin: 0 auto;
+    h1, h2 {
+      color: #111;
     }
-
-    /* карточка политики */
-    .privacy-card {
-      background: rgba(255, 255, 255, 0.98);
-      backdrop-filter: blur(0px);
-      border-radius: 2rem;
-      box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.25), 0 4px 12px rgba(0, 0, 0, 0.05);
-      overflow: hidden;
-      transition: all 0.2s ease;
-    }
-
-    /* хедер с градиентом */
-    .privacy-header {
-      background: linear-gradient(135deg, #0b2b3b 0%, #123e52 100%);
-      padding: 2.2rem 2rem;
-      color: white;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-    }
-
-    .privacy-header h1 {
-      font-size: 2.2rem;
-      font-weight: 700;
-      letter-spacing: -0.01em;
-      margin-bottom: 0.5rem;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    .privacy-header h1::before {
-      content: "🔒";
-      font-size: 2rem;
-      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
-    }
-
-    .effective-date {
-      display: inline-block;
-      background: rgba(255, 255, 255, 0.18);
-      backdrop-filter: blur(4px);
-      padding: 0.3rem 1rem;
-      border-radius: 60px;
-      font-size: 0.85rem;
-      font-weight: 500;
-      margin-top: 0.75rem;
-      letter-spacing: 0.2px;
-    }
-
-    /* основное содержимое */
-    .privacy-content {
-      padding: 2rem 2rem 2.2rem 2rem;
-    }
-
-    /* секции */
-    .section {
-      margin-bottom: 2rem;
-      border-bottom: 1px solid #e4edf2;
-      padding-bottom: 1.5rem;
-    }
-
-    .section:last-child {
-      border-bottom: none;
-      margin-bottom: 0;
-      padding-bottom: 0;
-    }
-
-    .section h2 {
-      font-size: 1.6rem;
-      font-weight: 600;
-      color: #0f3b4f;
-      margin-bottom: 1rem;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .section h2 i {
-      font-weight: 400;
-      font-size: 1.5rem;
-    }
-
-    .section p, .section li {
-      color: #2c475c;
-      font-size: 1rem;
-      margin-bottom: 0.75rem;
-    }
-
-    .section ul {
-      margin: 0.75rem 0 0.5rem 1.8rem;
-    }
-
-    .section li {
-      margin-bottom: 0.45rem;
-    }
-
-    .highlight {
-      background: #eff6fa;
-      padding: 0.1rem 0.3rem;
-      border-radius: 8px;
-      font-weight: 500;
-      color: #0a5c7c;
-    }
-
-    .contact-block {
-      background: #f0f6fc;
-      border-radius: 1.2rem;
-      padding: 1.2rem 1.5rem;
-      margin-top: 1rem;
-      border-left: 5px solid #2c7da0;
-    }
-
-    .contact-email {
-      font-family: monospace;
-      font-size: 1.1rem;
-      background: white;
-      display: inline-block;
-      padding: 0.3rem 1rem;
-      border-radius: 40px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-      border: 1px solid #cbdde6;
-      color: #0f3b4f;
-      font-weight: 600;
-      margin-top: 0.5rem;
-      word-break: break-all;
-    }
-
-    .footer-note {
-      margin-top: 1.8rem;
-      text-align: center;
-      font-size: 0.8rem;
-      color: #6c8d9e;
-      border-top: 1px solid #e2ecf2;
-      padding-top: 1.5rem;
-    }
-
-    /* адаптивность */
-    @media (max-width: 640px) {
-      body {
-        padding: 1rem 0.8rem;
-      }
-      .privacy-header {
-        padding: 1.5rem;
-      }
-      .privacy-header h1 {
-        font-size: 1.7rem;
-      }
-      .privacy-content {
-        padding: 1.5rem;
-      }
-      .section h2 {
-        font-size: 1.35rem;
-      }
-      .contact-email {
-        font-size: 0.9rem;
-        padding: 0.25rem 0.8rem;
-      }
-    }
-
-    /* анимация появления */
-    @keyframes fadeSlide {
-      0% { opacity: 0; transform: translateY(12px);}
-      100% { opacity: 1; transform: translateY(0);}
-    }
-    .privacy-card {
-      animation: fadeSlide 0.5s ease-out;
-    }
-
-    /* простые иконки эмодзи, но без внешних зависимостей */
-    .icon-txt {
-      font-size: 1.4rem;
+    a {
+      color: #0a66c2;
     }
   </style>
 </head>
 <body>
-<div class="privacy-container">
-  <div class="privacy-card">
-    <div class="privacy-header">
-      <h1>Политика конфиденциальности</h1>
-      <p>Мы ценим ваши данные и обеспечиваем их надёжную защиту</p>
-      <div class="effective-date">📅 Дата вступления в силу: 5 апреля 2026 г.</div>
-    </div>
+  <h1>Политика конфиденциальности</h1>
+  <p>Дата последнего обновления: 6 апреля 2026 года</p>
 
-    <div class="privacy-content">
-      <!-- 1. Сбор информации -->
-      <div class="section">
-        <h2><span class="icon-txt">📋</span> 1. Сбор информации</h2>
-        <p>Мы можем собирать следующие данные, предоставляемые через <strong>Facebook API</strong> (только с вашего согласия и в рамках необходимых разрешений):</p>
-        <ul>
-          <li>✔️ <span class="highlight">Имя</span> пользователя (публичный профиль)</li>
-          <li>✔️ <span class="highlight">Идентификатор пользователя</span> (Facebook ID)</li>
-          <li>✔️ <span class="highlight">Адрес электронной почты</span> (если доступен и разрешён пользователем)</li>
-          <li>✔️ Дополнительная информация, необходимая для работы функций приложения (токены доступа, настройки автопостинга)</li>
-        </ul>
-        <p>Все данные собираются исключительно для предоставления функций нашего сервиса и не используются в иных целях.</p>
-      </div>
+  <p>Настоящая Политика конфиденциальности объясняет, какие данные собирает приложение, авторизующее пользователей через Facebook (Meta), как эти данные используются, хранятся и удаляются.</p>
 
-      <!-- 2. Использование данных -->
-      <div class="section">
-        <h2><span class="icon-txt">⚙️</span> 2. Использование данных</h2>
-        <p>Собранные данные используются <strong>исключительно для целей, связанных с функциональностью приложения</strong>, в том числе:</p>
-        <ul>
-          <li>🔹 Автоматизация публикации контента на ваших страницах / стенах Facebook (по вашему запросу).</li>
-          <li>🔹 Обеспечение персонализированных настроек и управления учётной записью.</li>
-          <li>🔹 Улучшение работы сервиса и техническая поддержка.</li>
-        </ul>
-        <p>Мы не анализируем ваши данные в коммерческих целях и не передаём их рекламным сетям.</p>
-      </div>
+  <h2>1. Какие данные мы можем получать</h2>
+  <p>При входе через Facebook приложение может получать следующие данные пользователя, если они разрешены пользователем и доступны через платформу Meta:</p>
+  <ul>
+    <li>имя и фамилия;</li>
+    <li>адрес электронной почты;</li>
+    <li>фотография профиля;</li>
+    <li>идентификатор пользователя в Facebook;</li>
+    <li>иные данные, которые пользователь явно разрешил передать через Facebook Login.</li>
+  </ul>
 
-      <!-- 3. Хранение и безопасность -->
-      <div class="section">
-        <h2><span class="icon-txt">🛡️</span> 3. Хранение и безопасность</h2>
-        <p>Мы принимаем все разумные меры для защиты ваших данных от несанкционированного доступа, изменения, раскрытия или уничтожения.</p>
-        <ul>
-          <li>✅ Передача данных осуществляется по защищённым каналам (TLS/SSL).</li>
-          <li>✅ Доступ к личной информации имеют только авторизованные сотрудники, которым это необходимо для выполнения обязанностей.</li>
-          <li>✅ Регулярный аудит систем безопасности и контроль целостности данных.</li>
-        </ul>
-        <p>Обратите внимание, что ни один метод передачи через интернет или электронного хранения не является абсолютно безопасным, но мы прилагаем максимальные усилия для защиты вашей информации.</p>
-      </div>
+  <h2>2. Как используются данные</h2>
+  <p>Полученные данные используются только для следующих целей:</p>
+  <ul>
+    <li>авторизация и вход в приложение;</li>
+    <li>идентификация пользователя внутри сервиса;</li>
+    <li>обеспечение работы функций приложения;</li>
+    <li>связь с пользователем при необходимости.</li>
+  </ul>
 
-      <!-- 4. Третьи стороны -->
-      <div class="section">
-        <h2><span class="icon-txt">🤝</span> 4. Третьи стороны</h2>
-        <p><strong>Мы не передаём данные третьим лицам</strong>, за исключением случаев, предусмотренных действующим законодательством (например, по законному требованию суда или правоохранительных органов).</p>
-        <p>Мы не продаём, не обмениваем и не раскрываем вашу личную информацию маркетинговым или рекламным партнёрам. Вся информация, полученная через Facebook API, используется в строгом соответствии с Политикой платформы Facebook.</p>
-      </div>
+  <h2>3. Передача данных третьим лицам</h2>
+  <p>Мы не продаём и не передаём персональные данные третьим лицам, за исключением случаев, когда это требуется законом или необходимо для работы приложения и интеграции с сервисами Meta.</p>
 
-      <!-- 5. Контакты + Дополнительная информация о правах -->
-      <div class="section">
-        <h2><span class="icon-txt">📧</span> 5. Контакты и ваши права</h2>
-        <p>Если у вас возникли вопросы по поводу нашей политики конфиденциальности, обработки или удаления ваших данных, вы можете связаться с нами любым удобным способом.</p>
-        <div class="contact-block">
-          <span style="font-weight: 600;">📬 Свяжитесь с ответственным за обработку данных:</span><br>
-          <div class="contact-email">✉️ boxp@mail.ru</div>
-          <p style="margin-top: 0.8rem; font-size: 0.9rem;">Вы также имеете право запросить удаление ваших данных, отозвать согласие на обработку или получить копию хранимой информации. Ответим в течение 30 дней.</p>
-        </div>
-      </div>
+  <h2>4. Хранение и защита данных</h2>
+  <p>Мы принимаем разумные технические и организационные меры для защиты данных пользователей от несанкционированного доступа, изменения, раскрытия или уничтожения.</p>
 
-      <!-- доп. информация о Facebook API и согласии -->
-      <div class="section">
-        <h2><span class="icon-txt">🔐</span> 6. Ваше согласие и изменения политики</h2>
-        <p>Используя наше приложение, вы соглашаетесь с условиями настоящей Политики конфиденциальности. Если вы не согласны с какими-либо положениями, пожалуйста, прекратите использование приложения.</p>
-        <p>Мы оставляем за собой право вносить изменения в данный документ. О любых изменениях будет сообщено через обновление на этой странице с указанием новой даты вступления в силу. Рекомендуем периодически просматривать Политику конфиденциальности.</p>
-        <p style="margin-top: 0.6rem;"><span class="highlight">Важно:</span> все операции через Facebook API выполняются в рамках официальных разрешений, запрашиваемых при авторизации. Вы можете отозвать доступ приложения в настройках вашего аккаунта Facebook в любое время.</p>
-      </div>
+  <h2>5. Удаление данных</h2>
+  <p>Пользователь может запросить удаление своих данных, связанных с приложением, отправив запрос на электронную почту: <a href="mailto:yourmail@example.com">yourmail@example.com</a>.</p>
+  <p>Также пользователь может удалить связь приложения со своим аккаунтом Facebook через настройки Facebook:</p>
+  <ul>
+    <li>Откройте Facebook;</li>
+    <li>Перейдите в «Настройки и конфиденциальность» → «Настройки»;</li>
+    <li>Откройте раздел «Приложения и сайты»;</li>
+    <li>Найдите нужное приложение и удалите его.</li>
+  </ul>
 
-      <div class="footer-note">
-        © 2026 Наше приложение — конфиденциальность превыше всего. <br>
-        Документ разработан в соответствии с общими требованиями GDPR и правилами Facebook Platform.
-      </div>
-    </div>
-  </div>
-</div>
+  <h2>6. Cookies и технические данные</h2>
+  <p>Приложение или связанный сайт может автоматически получать технические данные, такие как IP-адрес, тип браузера, тип устройства, язык интерфейса, дата и время входа, для обеспечения стабильной работы и безопасности.</p>
+
+  <h2>7. Изменения политики</h2>
+  <p>Мы можем время от времени обновлять настоящую Политику конфиденциальности. Актуальная версия всегда доступна на этой странице.</p>
+
+  <h2>8. Контакты</h2>
+  <p>Если у вас есть вопросы по поводу настоящей Политики конфиденциальности или обработки данных, свяжитесь с нами по адресу: <a href="mailto:boxp@mail.ru">boxp@mail.ru</a>.</p>
 </body>
 </html>
